@@ -4,15 +4,16 @@ A simple windows program that will run in background and change display refresh 
 # Installation
 ## Change settings in `PBRR.set` file:
 * First we will change some settings in ``PBRR.set`` file.
-* You can open the file with notepad or any other text editor of your choice.
-* First line is for refresh rate when your device is **plugged** in. Change it to (preferably) highest refresh rate that your monitor supports.
-* Second line is for refresh rate when your device is * **NOT plugged** in. Change it to lower refresh rate that your monitor supports.
-* Note that you should not remove the last line, program needs a ``newwline`` at the end of second line to detect refresh rate settings.
 ```
 144 #Refresh rate when power is connected.
 60  #Refresh rate when power is not connected.
 #Leave this extra line at the end. Program needs it.
 ```
+* You can open the file with notepad or any other text editor of your choice.
+* First line is for refresh rate when your device is **plugged** in. Change it to (preferably) highest refresh rate that your monitor supports.
+* Second line is for refresh rate when your device is * **NOT plugged** in. Change it to lower refresh rate that your monitor supports.
+* Note that you should not remove the last line, program needs a ``newwline`` at the end of second line to detect refresh rate settings.
+
 * At this point you should test it out by running PBRR.exe (It will not open any window and just run in background) and try to disconnect and reconnect your power. If both the time it changes the refresh rate to what you have set in ``PBRR.set`` file then you are good to go with next step of making it run on startup.
 
 ## Making it run on startup:
