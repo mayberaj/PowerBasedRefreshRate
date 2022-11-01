@@ -3,6 +3,7 @@ A simple windows program that will run in background and change display refresh 
 
 # Installation
 ## Change settings in `PBRR.set` file:
+* First we will change some settings in ``PBRR.set`` file.
 * You can open the file with notepad or any other text editor of your choice.
 * First line is for refresh rate when your device is **plugged** in. Change it to (preferably) highest refresh rate that your monitor supports.
 * Second line is for refresh rate when your device is * **NOT plugged** in. Change it to lower refresh rate that your monitor supports.
