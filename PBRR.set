@@ -1,0 +1,3 @@
+144 #Refresh rate when power is connected.
+60  #Refresh rate when power is not connected.
+#Leave this extra line at the end. Program needs it.
