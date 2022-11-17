@@ -1,9 +1,6 @@
 # PowerBasedRefreshRate
 A simple windows program that will run in background and change display refresh rate based on power status. So if you disconnect your laptop's power it will automatically change display refresh rate to what you have set in settings file and vice versa when you connect power. It helps increase battery life.
 
-# Known Issue:
-Games (maybe apps too) fighting for refresh rate: Sometimes Windows sends power change event (WM_POWERBROADCAST) occasionally without actuall change in power status, which causes this application to check current refresh rate and update it depending on settings in ``PBRR.set``. And that causes screen to change refresh rate multiple times as other game is fighting to keep display at different refresh rate. (Quick fix for now is to just ``End task`` this application ``PBRR.exe`` if you notice your screen flicker twice often when using Fullscreen applications)
-
 # Installation
 ## Change settings in `PBRR.set` file:
 * First we will change some settings in ``PBRR.set`` file.
