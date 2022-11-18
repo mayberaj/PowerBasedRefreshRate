@@ -17,7 +17,7 @@ A simple windows program that will run in background and change display refresh 
 
 * At this point you should test it out by running PBRR.exe (It will not open any window and just run in background) and try to disconnect and reconnect your power. If both the time it changes the refresh rate to what you have set in ``PBRR.set`` file then you are good to go with next step of making it run on startup.
 
-## Making it run on startup:
+## Make it run on startup:
 * We will be adding shortcut of ``PBRR.exe`` in **Startup** folder.
 * First copy the ``PBRR.exe`` by selecting the file and pressing <kbd> Ctrl C </kbd>.
 * Now goto ``%AppData%\Microsoft\Windows\Start Menu\Programs\Startup`` (copy-paste into File Exploror's addressbar).
