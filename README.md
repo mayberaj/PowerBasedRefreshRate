@@ -1,6 +1,7 @@
 # PowerBasedRefreshRate
 A simple windows program that will run in background and change display refresh rate based on power status. So if you disconnect your laptop's power it will automatically change display refresh rate to what you have set in settings file and vice versa when you connect power. It helps increase battery life.
 
+
 # Installation
 ## Change settings in `PBRR.set` file:
 * First we will change some settings in ``PBRR.set`` file.
@@ -22,3 +23,9 @@ A simple windows program that will run in background and change display refresh 
 * Now goto ``%AppData%\Microsoft\Windows\Start Menu\Programs\Startup`` (copy-paste into File Exploror's addressbar).
 * And <kbd> Right Click </kbd> and select ``Paste shortcut`` to paste shortcut in **Startup** folder.
 * Now feel free to restart your computer and make sure that **PBRR.exe** in running in Task Manager after startup.
+
+
+# Build
+* The only compiler I have used to build and know works is ``gcc (MinGW.org GCC Build-2) 9.2.0``.
+* To build, open terminal in source folder and type ``gcc -ofast PBRR.c -o PBRR -mwindows``. You should have a new ``PBRR.exe`` in source folder.
+* Now you can follow the [Make it run on startup](#make-it-run-on-startup) steps.
