@@ -31,9 +31,12 @@ const wchar_t PBRRS_WINDOW_CLASS[]  = L"PBRRS Power Status Event Listener";
 const char PBRR_EXIT_UNABLE_TO_OPEN_LOG_FILE = -3;
 const char PBRR_EXIT_UNABLE_TO_READ_SETTINGS_FILE = -3;
 
-unsigned long REFRESH_RATE_ON_POWER = -1;
-unsigned long REFRESH_RATE_OFF_POWER = -1;
+unsigned long REFRESH_RATE_ON_POWER = 0;
+unsigned long REFRESH_RATE_OFF_POWER = 0;
 
+
+// This should be set to anything other than 0, 1 and 255 at first.
+unsigned char powerStatusOnLastUpdate = 155; 
 
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, int nCmdShow)
 {
@@ -103,6 +106,12 @@ void UpdateRefreshRate ()
             unsigned long currentRefreshRate = dm.dmDisplayFrequency;
             char shouldRequestChange = FALSE;
 
+            // Only update if power status has changed.
+            if (powerStatus.ACLineStatus == powerStatusOnLastUpdate)
+            {
+                return;
+            }
+
             // 0 = AC Power status: Not connected.
             if (powerStatus.ACLineStatus == 0 && currentRefreshRate != REFRESH_RATE_OFF_POWER)
             {
@@ -132,6 +141,7 @@ void UpdateRefreshRate ()
             {
                 case DISP_CHANGE_SUCCESSFUL:
                     Log ("Successfully changed refresh rate.");
+                    powerStatusOnLastUpdate = powerStatus.ACLineStatus;
                     break;
                 case DISP_CHANGE_BADDUALVIEW:
                     Log ("Error changing refresh rate: The settings change was unsuccessful because the system is DualView capable.");
