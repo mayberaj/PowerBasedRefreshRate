@@ -31,8 +31,8 @@ const wchar_t PBRRS_WINDOW_CLASS[]  = L"PBRRS Power Status Event Listener";
 const char PBRR_EXIT_UNABLE_TO_OPEN_LOG_FILE = -3;
 const char PBRR_EXIT_UNABLE_TO_READ_SETTINGS_FILE = -3;
 
-unsigned long REFRESH_RATE_ON_POWER = 0;
-unsigned long REFRESH_RATE_OFF_POWER = 0;
+unsigned long REFRESH_RATE_ON_POWER = -1; // -1 should set it equivalent to ULONG_MAX from limits.h.
+unsigned long REFRESH_RATE_OFF_POWER = -1;
 
 
 // This should be set to anything other than 0, 1 and 255 at first.
