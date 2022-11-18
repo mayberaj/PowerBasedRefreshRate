@@ -29,3 +29,4 @@ A simple windows program that will run in background and change display refresh 
 * The only compiler I have used to build and know works is ``gcc (MinGW.org GCC Build-2) 9.2.0``.
 * To build, open terminal in source folder and type ``gcc -ofast PBRR.c -o PBRR -mwindows``. You should have a new ``PBRR.exe`` in source folder.
 * Now you can follow the [Make it run on startup](#make-it-run-on-startup) steps.
+* And don't forget to create the Settings (``PBRR.set``) file. Syntax of that file can be found [Here](#change-settings-in-pbrrset-file).
