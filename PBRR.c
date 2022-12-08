@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
+#include <limits.h>
 
 
 LRESULT CALLBACK WindowProc (HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -31,8 +32,8 @@ const wchar_t PBRRS_WINDOW_CLASS[]  = L"PBRRS Power Status Event Listener";
 const char PBRR_EXIT_UNABLE_TO_OPEN_LOG_FILE = -3;
 const char PBRR_EXIT_UNABLE_TO_READ_SETTINGS_FILE = -3;
 
-unsigned long REFRESH_RATE_ON_POWER = -1; // -1 should set it equivalent to ULONG_MAX from limits.h.
-unsigned long REFRESH_RATE_OFF_POWER = -1;
+unsigned long REFRESH_RATE_ON_POWER = ULONG_MAX;
+unsigned long REFRESH_RATE_OFF_POWER = ULONG_MAX;
 
 
 // This should be set to anything other than 0, 1 and 255 at first.
@@ -98,6 +99,21 @@ void UpdateRefreshRate ()
 
     if (GetSystemPowerStatus (&powerStatus) != FALSE)
     {
+        // Only update if power status has changed.
+        if (powerStatus.ACLineStatus == powerStatusOnLastUpdate)
+        {
+            return;
+        }
+
+        // Debug.
+        {
+            char c[16] = "Powar Status: ";
+            c[14] = ((int) powerStatus.ACLineStatus + 48);
+            c[15] = 0;
+            Log (c);
+        }
+
+
         DEVMODE dm;
         ZeroMemory (&dm, sizeof(dm));
         dm.dmSize = sizeof (dm);
@@ -105,12 +121,6 @@ void UpdateRefreshRate ()
         {
             unsigned long currentRefreshRate = dm.dmDisplayFrequency;
             char shouldRequestChange = FALSE;
-
-            // Only update if power status has changed.
-            if (powerStatus.ACLineStatus == powerStatusOnLastUpdate)
-            {
-                return;
-            }
 
             // 0 = AC Power status: Not connected.
             if (powerStatus.ACLineStatus == 0 && currentRefreshRate != REFRESH_RATE_OFF_POWER)
@@ -228,7 +238,7 @@ void LoadSettings ()
         }
     }
 
-    if (REFRESH_RATE_ON_POWER == -1 || REFRESH_RATE_OFF_POWER == -1)
+    if (REFRESH_RATE_ON_POWER == ULONG_MAX || REFRESH_RATE_OFF_POWER == ULONG_MAX)
     {
         Log ("Unable to read refresh rate settings. Make sure there is a extra line at the end.");
         exit (-4);
