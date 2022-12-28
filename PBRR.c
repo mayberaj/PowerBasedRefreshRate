@@ -25,7 +25,7 @@ void LoadSettings ();
 const char* PBRR_LOG_FILE_NAME = "PBRR.log";
 const char* PBRR_SETTINGS_FILE_NAME = "PBRR.set";
 
-const char* PBRRS_LOG_STARTED = "_____Started_____";
+const char* PBRRS_LOG_STARTED = "_____Started: Build 3_____";
 const char* PBRRS_LOG_EXITING = "_____Exiting_____";
 const wchar_t PBRRS_WINDOW_CLASS[]  = L"PBRRS Power Status Event Listener";
 
@@ -103,6 +103,11 @@ void UpdateRefreshRate ()
         if (powerStatus.ACLineStatus == powerStatusOnLastUpdate)
         {
             return;
+        }
+
+        if (powerStatusOnLastUpdate == 155)
+        {
+            powerStatusOnLastUpdate = powerStatus.ACLineStatus;
         }
 
         // Debug.
